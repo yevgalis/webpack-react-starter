@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isDevBuild = process.env.NODE_ENV === 'development';
 
 module.exports = {
@@ -6,11 +7,11 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'public')
+    path: path.join(__dirname, 'build')
   },
   devtool: isDevBuild ? 'source-map' : 'none',
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
+    contentBase: path.join(__dirname, 'build'),
     open: true,
     port: 1337,
     historyApiFallback: true
@@ -24,6 +25,12 @@ module.exports = {
           loader: 'babel-loader',
         },
       }
-    ],
-  }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.join(__dirname, './public/index.html')
+    })
+  ]
 };
