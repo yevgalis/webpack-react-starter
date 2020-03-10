@@ -1,12 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const isDevBuild = process.env.NODE_ENV === 'development';
 
 module.exports = {
   mode: isDevBuild ? 'none' : 'production',
   entry: './src/index.js',
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.[hash:4].js',
     path: path.join(__dirname, 'build')
   },
   devtool: isDevBuild ? 'source-map' : 'none',
@@ -28,6 +29,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(__dirname, './public/index.html')
