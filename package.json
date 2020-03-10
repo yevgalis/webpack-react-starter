@@ -4,8 +4,8 @@
   "description": "Initial webpack set-up for React projects (similar to create-react-app)",
   "scripts": {
     "eslint": "eslint --ext .jsx --ext .js src/",
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server"
+    "start": "NODE_ENV=development webpack-dev-server",
+    "build": "webpack"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
@@ -27,5 +27,17 @@
   },
   "engines": {
     "node": "10"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
+    ]
   }
 }
