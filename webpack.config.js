@@ -36,16 +36,28 @@ module.exports = {
         ]
       },
       {
-        test: /.(jpg|jpeg|png|gif|mp3|svg)$/,
+        test: /.(jpg|jpeg|png|gif|svg)$/,
         use: [
           {
             loader: "file-loader",
             options: {
-              name: "[path][name]-[hash:8].[ext]"
+              outputPath: 'img',
+              name: "[name]-[hash:4].[ext]"
             }
           }
         ]
-      }
+      },
+      // {
+      //   test: /.(woff|woff2|eot|ttf|otf)$/,
+      //   use: [
+      //     {
+      //       loader: "file-loader",
+      //       options: {
+      //         outputPath: 'fonts'
+      //       }
+      //     }
+      //   ]
+      // }
     ]
   },
   plugins: [
@@ -55,8 +67,8 @@ module.exports = {
       template: path.join(__dirname, './public/index.html')
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: isDevMode ? 'style.css' : 'style.[hash:4].css',
+      chunkFilename: isDevMode ? '[id].css' : '[id].[hash:4].css'
     })
   ]
 };
