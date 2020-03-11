@@ -2,16 +2,16 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const isDevBuild = process.env.NODE_ENV === 'development';
+const isDevMode = process.env.NODE_ENV === 'development';
 
 module.exports = {
-  mode: isDevBuild ? 'none' : 'production',
+  mode: isDevMode ? 'none' : 'production',
   entry: './src/index.js',
   output: {
     filename: 'bundle.[hash:4].js',
     path: path.join(__dirname, 'build')
   },
-  devtool: isDevBuild ? 'source-map' : 'none',
+  devtool: isDevMode ? 'source-map' : 'none',
   devServer: {
     contentBase: path.join(__dirname, 'build'),
     open: true,
@@ -33,6 +33,17 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
+        ]
+      },
+      {
+        test: /.(jpg|jpeg|png|gif|mp3|svg)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[path][name]-[hash:8].[ext]"
+            }
+          }
         ]
       }
     ]
