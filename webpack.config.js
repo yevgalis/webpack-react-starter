@@ -8,7 +8,7 @@ module.exports = {
   mode: isDevMode ? 'none' : 'production',
   entry: './src/index.js',
   output: {
-    filename: 'bundle.[hash:4].js',
+    filename: 'bundle.[hash:8].js',
     path: path.join(__dirname, 'build')
   },
   devtool: isDevMode ? 'source-map' : 'none',
@@ -42,7 +42,7 @@ module.exports = {
             loader: "file-loader",
             options: {
               outputPath: 'img',
-              name: "[name]-[hash:4].[ext]"
+              name: "[name]-[hash:8].[ext]"
             }
           }
         ]
@@ -67,8 +67,8 @@ module.exports = {
       template: path.join(__dirname, './public/index.html')
     }),
     new MiniCssExtractPlugin({
-      filename: isDevMode ? 'style.css' : 'style.[hash:4].css',
-      chunkFilename: isDevMode ? '[id].css' : '[id].[hash:4].css'
+      filename: isDevMode ? 'css/style.css' : 'css/style.[hash:8].css',
+      chunkFilename: isDevMode ? 'css/[id].css' : 'css/[id].[hash:8].css'
     })
   ]
 };
