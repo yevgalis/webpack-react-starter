@@ -8,7 +8,7 @@ module.exports = {
   mode: isDevMode ? 'none' : 'production',
   entry: './src/index.js',
   output: {
-    filename: 'bundle.[hash:8].js',
+    filename: 'js/bundle.[hash:8].js',
     path: path.join(__dirname, 'build')
   },
   devtool: isDevMode ? 'source-map' : 'none',
@@ -31,7 +31,11 @@ module.exports = {
         test: /.(css|sass|scss)$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 }
+          },
+          'postcss-loader',
           'sass-loader'
         ]
       },
@@ -39,21 +43,22 @@ module.exports = {
         test: /.(jpg|jpeg|png|gif|svg)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
               outputPath: 'img',
-              name: "[name]-[hash:8].[ext]"
+              name: '[name]-[hash:8].[ext]'
             }
           }
         ]
       },
       // {
+      //   test: /\.(woff|woff2|eot|ttf|otf)$/,
       //   test: /.(woff|woff2|eot|ttf|otf)$/,
       //   use: [
       //     {
-      //       loader: "file-loader",
+      //       loader: 'file-loader',
       //       options: {
-      //         outputPath: 'fonts'
+      //         outputPath: 'fonts/'
       //       }
       //     }
       //   ]
