@@ -1,8 +1,8 @@
 import React from 'react';
-import './app.scss';
 import Content from '../content/content.jsx';
-import Button from '../button/button';
+import Button from 'components/button/button';
 import image from './test_image.jpg';
+import './app.scss';
 
 const App = () => {
   return (
