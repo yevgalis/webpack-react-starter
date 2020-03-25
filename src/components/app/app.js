@@ -1,9 +1,9 @@
 import React from 'react';
 import './app.scss';
-import webpackLogo from '../../../assets/webpack.svg';
-import babelLogo from '../../../assets/babel.svg';
-import reactLogo from '../../../assets/react.svg';
-import eslintLogo from '../../../assets/eslint.svg';
+import webpackLogo from 'assets/img/webpack.svg';
+import babelLogo from 'assets/img/babel.svg';
+import reactLogo from 'assets/img/react.svg';
+import eslintLogo from 'assets/img/eslint.svg';
 
 const App = () => {
   return (
