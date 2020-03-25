@@ -1,12 +1,15 @@
 // IMPORTS
-@import "../../../public/styles/normalize.scss";
+@import "../../../public/normalize.scss";
 
 // VARIABLES
 $font-family: "Source Sans Pro", "Segoe UI", "Roboto", "Open Sans", Arial, sans-serif;
+$code-font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 $font-size: 16px;
 $line-height: 24px;
 $main-bg-color: #f1f1f1;
 $main-color: #333333;
+$min-width: 320px;
+$max-width: 1200px;
 
 // STYLES
 html {
@@ -21,7 +24,7 @@ html {
 }
 
 body {
-  min-width: 320px;
+  min-width: $min-width;
   min-height: 100vh;
   font-family: $font-family;
   font-size: $font-size;
@@ -34,7 +37,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: $code-font-family;
 }
 
 a {
@@ -42,7 +45,7 @@ a {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: $max-width;
   margin: 0 auto;
   padding: 20px;
 }
@@ -50,7 +53,7 @@ a {
 .app-title {
   margin: 0;
   font-size: 40px;
-  line-height: 45px;
+  line-height: 55px;
   text-align: center;
 }
 
@@ -67,57 +70,52 @@ a {
   }
 }
 
-.logos {
+.logo-cards-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  width: 600px;
+  justify-content: space-between;
+  max-width: 600px;
   margin: 0 auto;
   margin-top: 40px;
-  // background: lightskyblue;
 }
 
-.logo-card {
-  min-width: 120px;
-  margin-left: 5px;
-  padding: 10px 20px;
+.logo__card {
+  position: relative;
+  width: 25%;
+  min-width: 135px;
+  padding: 10px 30px;
   text-align: center;
-  // background: coral;
 }
 
-// .logo-card::after {
-//   content: "+";
-//   display: inline-block;
-//   width: 10px;
-//   height: 10px;
-// }
-
-.logo-img {
+.logo__img {
   display: block;
   margin: 0 auto;
   width: 80px;
   height: 80px;
-  // background-color: lightseagreen;
+
+  &--spin {
+    animation: spin infinite 25s linear;
+  }
 }
 
-.logo-img-spin {
-  animation: spin infinite 25s linear;
-}
-
-.logo-title {
+.logo__title {
   margin-top: 15px;
   margin-bottom: 0;
-  // background-color: lemonchiffon;
 }
 
-// @media (max-width: 550px) {
-//   .logos {
-//     justify-content: flex-start;
-//     width: 100%;
-//   }
+@media (max-width: 600px) {
+  .logo__card {
+    width: 33%;
+  }
+}
 
-//   .logo-card {
-//     width: 50%;
-//     margin-left: 0;
-//   }
-// }
+@media (max-width: 460px) {
+  .logo-cards-wrapper {
+    justify-content: center;
+  }
+
+  .logo__card {
+    width: 50%;
+    transform: scale(0.9);
+  }
+}
