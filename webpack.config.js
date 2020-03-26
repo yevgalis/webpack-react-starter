@@ -1,9 +1,10 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-// const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally');
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const isDevMode = process.env.NODE_ENV === 'development';
 
 module.exports = {
@@ -70,7 +71,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      minify: false,
+      minify: false,  // NOTE - remove in production
       filename: 'index.html',
       template: path.join(__dirname, './public/index.html')
     }),
@@ -82,20 +83,20 @@ module.exports = {
       {
         from: 'public/robots.txt',
         to: path.join(__dirname, 'build')
-      },
-      // {
-      //   from: './public/libs/**/*.js',
-      //   to: path.join(__dirname, 'build/js/libs/[name].[ext]'),
-      //   toType: 'template'
-      // }
+      }
     ]),
-    // new HtmlWebpackTagsPlugin({
-    //   scripts: [{
-    //     path: 'js/libs',
-    //     glob: '*.js',
-    //     globPath: 'public/libs'
-    //   }],
-    //   append: false,
-    // })
+    new MergeIntoSingleFilePlugin({
+      files: [{
+        src: [
+          './public/libs/jquery-3.4.1.min.js',
+          './public/libs/bootstrap.bundle.min.js'
+        ],
+        dest: 'js/vendors.js'
+      }]
+    }),
+    new HtmlWebpackTagsPlugin({
+      scripts: 'js/vendors.js',
+      append: false,
+    })
   ]
 };
