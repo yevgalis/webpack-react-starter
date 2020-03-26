@@ -1,7 +1,9 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+// const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isDevMode = process.env.NODE_ENV === 'development';
 
 module.exports = {
@@ -33,7 +35,7 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            options: { importLoaders: 2 }
+            options: {importLoaders: 2}
           },
           'postcss-loader',
           'sass-loader'
@@ -68,12 +70,32 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      minify: false,
       filename: 'index.html',
       template: path.join(__dirname, './public/index.html')
     }),
     new MiniCssExtractPlugin({
       filename: isDevMode ? 'css/style.css' : 'css/style.[hash:8].css',
       chunkFilename: isDevMode ? 'css/[id].css' : 'css/[id].[hash:8].css'
-    })
+    }),
+    new CopyPlugin([
+      {
+        from: 'public/robots.txt',
+        to: path.join(__dirname, 'build')
+      },
+      // {
+      //   from: './public/libs/**/*.js',
+      //   to: path.join(__dirname, 'build/js/libs/[name].[ext]'),
+      //   toType: 'template'
+      // }
+    ]),
+    // new HtmlWebpackTagsPlugin({
+    //   scripts: [{
+    //     path: 'js/libs',
+    //     glob: '*.js',
+    //     globPath: 'public/libs'
+    //   }],
+    //   append: false,
+    // })
   ]
 };
