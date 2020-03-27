@@ -2,6 +2,9 @@
   "name": "webpack-react-starter",
   "version": "1.0.0",
   "description": "Initial webpack set-up for React projects (similar to create-react-app)",
+  "author": "Evgeniy Alishevets",
+  "keywords": ["webpack", "react", "babel", "eslint"],
+  "homepage": "https://github.com/yevgalis/webpack-react-starter",
   "scripts": {
     "eslint": "eslint --ext .jsx --ext .js src/",
     "start": "NODE_ENV=development webpack-dev-server",
