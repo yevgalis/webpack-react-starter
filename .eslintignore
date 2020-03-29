@@ -1,0 +1,11 @@
+# Third party
+**/node_modules
+
+# Build products
+build/
+coverage/
+
+# Misc
+.vscode*
+.config.js
+.webpack
