@@ -9,3 +9,4 @@ coverage/
 .vscode*
 .config.js
 .webpack
+webpack.config.js
