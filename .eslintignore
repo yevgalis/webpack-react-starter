@@ -6,7 +6,8 @@ build/
 coverage/
 
 # Misc
-.vscode*
-.config.js
-.webpack
+.vscode
 *.config.js
+.webpack
+.serverless
+_warmup
