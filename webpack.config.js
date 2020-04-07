@@ -36,7 +36,7 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            options: {importLoaders: 2}
+            options: { importLoaders: 2 }
           },
           'postcss-loader',
           'sass-loader'
@@ -54,24 +54,25 @@ module.exports = {
           }
         ]
       },
-      // {
-      //   test: /\.(woff|woff2|eot|ttf|otf)$/,
-      //   test: /.(woff|woff2|eot|ttf|otf)$/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //       options: {
-      //         outputPath: 'fonts/'
-      //       }
-      //     }
-      //   ]
-      // }
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: 'fonts/',
+                publicPath: '../fonts',
+            }
+          }
+        ]
+      }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      // minify: false,
+      minify: false,
       filename: 'index.html',
       template: path.join(__dirname, './public/index.html')
     }),
@@ -84,7 +85,7 @@ module.exports = {
         from: 'public/robots.txt',
         to: path.join(__dirname, 'build')
       }
-    ]),
+    ])
     // new MergeIntoSingleFilePlugin({
     //   files: [{
     //     src: [
