@@ -8,7 +8,8 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -21,7 +22,8 @@
   "plugins": [
     "react",
     "react-hooks",
-    "import"
+    "import",
+    "jsx-a11y"
   ],
   "settings": {
     "react": {
