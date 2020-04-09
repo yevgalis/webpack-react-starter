@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 // const MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally');
 // const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const isDevMode = process.env.NODE_ENV === 'development';
@@ -85,7 +86,8 @@ module.exports = {
         from: 'public/robots.txt',
         to: path.join(__dirname, 'build')
       }
-    ])
+    ]),
+    new CaseSensitivePathsPlugin()
     // new MergeIntoSingleFilePlugin({
     //   files: [{
     //     src: [
