@@ -6,16 +6,19 @@ const CopyPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 // const MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally');
 // const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
-const isDevMode = process.env.NODE_ENV === 'development';
+
+const isDevelopment = process.env.NODE_ENV === 'development';
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  mode: isDevMode ? 'none' : 'production',
+  mode: isDevelopment ? 'none' : 'production',
+  bail: isProduction,
+  devtool: isDevelopment ? 'cheap-module-source-map' : 'none',
   entry: './src/index.js',
   output: {
     filename: 'js/bundle.[hash:8].js',
     path: path.join(__dirname, 'build')
   },
-  devtool: isDevMode ? 'source-map' : 'none',
   devServer: {
     contentBase: path.join(__dirname, 'build'),
     open: true,
@@ -78,8 +81,8 @@ module.exports = {
       template: path.join(__dirname, './public/index.html')
     }),
     new MiniCssExtractPlugin({
-      filename: isDevMode ? 'css/style.css' : 'css/style.[hash:8].css',
-      chunkFilename: isDevMode ? 'css/[id].css' : 'css/[id].[hash:8].css'
+      filename: isDevelopment ? 'css/style.css' : 'css/style.[hash:8].css',
+      chunkFilename: isDevelopment ? 'css/[id].css' : 'css/[id].[hash:8].css'
     }),
     new CopyPlugin([
       {
