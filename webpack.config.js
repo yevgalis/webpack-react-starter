@@ -83,16 +83,12 @@ module.exports = {
         ]
       },
       {
-        test: /.(jpg|jpeg|png|gif|svg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'img',
-              name: '[name]-[hash:8].[ext]'
-            }
-          }
-        ]
+        test: /.(bmp|jpg|jpeg|png|gif|svg)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'img/[name].[hash:8].[ext]',
+        },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
