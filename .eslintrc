@@ -8,9 +8,9 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:jsx-a11y/recommended"
+    "plugin:import/warnings"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -23,8 +23,8 @@
   "plugins": [
     "react",
     "react-hooks",
-    "import",
-    "jsx-a11y"
+    "jsx-a11y",
+    "import"
   ],
   "settings": {
     "react": {

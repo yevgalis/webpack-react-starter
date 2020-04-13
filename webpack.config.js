@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 // const MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally');
 // const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 
@@ -122,7 +123,8 @@ module.exports = {
         to: path.join(__dirname, 'build')
       }
     ]),
-    new CaseSensitivePathsPlugin()
+    new CaseSensitivePathsPlugin(),
+    new Dotenv()
     // new MergeIntoSingleFilePlugin({
     //   files: [{
     //     src: [
