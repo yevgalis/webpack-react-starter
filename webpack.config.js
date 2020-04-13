@@ -6,8 +6,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-// const MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally');
-// const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = process.env.NODE_ENV === 'production';
@@ -124,18 +122,5 @@ module.exports = {
     ]),
     new CaseSensitivePathsPlugin(),
     new Dotenv()
-    // new MergeIntoSingleFilePlugin({
-    //   files: [{
-    //     src: [
-    //       './public/libs/jquery-3.4.1.min.js',
-    //       './public/libs/bootstrap.bundle.min.js'
-    //     ],
-    //     dest: 'js/vendors.js'
-    //   }]
-    // }),
-    // new HtmlWebpackTagsPlugin({
-    //   scripts: 'js/vendors.js',
-    //   append: false,
-    // })
   ]
 };
