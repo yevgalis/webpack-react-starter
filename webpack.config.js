@@ -22,8 +22,8 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'build'),
     open: true,
-    port: 1337,
     hot: true,
+    port: 1337,
     historyApiFallback: true
   },
   optimization: {
@@ -70,7 +70,7 @@ module.exports = {
         },
       },
       {
-        test: /.(css|sass|scss)$/,
+        test: /.(css|scss)$/,
         use: [
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           {
