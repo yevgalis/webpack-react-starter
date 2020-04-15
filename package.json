@@ -20,7 +20,7 @@
     "lint": "npm run eslint && npm run stylelint",
     "lint.fix": "npm run eslint.fix && npm run stylelint.fix",
     "test.jest": "jest",
-    "test": "npm run eslint && npm run test.jest",
+    "test": "npm run lint && npm run test.jest",
     "start": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack"
   },
