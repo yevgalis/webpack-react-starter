@@ -9,16 +9,18 @@
     "react",
     "babel",
     "eslint",
-    "stylelint"
+    "stylelint",
+    "jest",
+    "enzyme"
   ],
   "homepage": "https://github.com/yevgalis/webpack-react-starter",
   "scripts": {
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
-    "stylelint.fix": "stylelint \"src/**/*.{css,scss}\" --fix --formatter=verbose",
+    "stylelint:fix": "stylelint \"src/**/*.{css,scss}\" --fix --formatter=verbose",
     "eslint": "eslint --ext .jsx --ext .js src/",
-    "eslint.fix": "eslint --fix --ext .jsx --ext .js src/",
+    "eslint:fix": "eslint --fix --ext .jsx --ext .js src/",
     "lint": "npm run eslint && npm run stylelint",
-    "lint.fix": "npm run eslint.fix && npm run stylelint.fix",
+    "lint:fix": "npm run eslint:fix && npm run stylelint:fix",
     "test.jest": "jest",
     "test": "npm run lint && npm run test.jest",
     "start": "cross-env NODE_ENV=development webpack-dev-server",
@@ -54,6 +56,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-import-resolver-babel-module": "^5.1.2",
+    "eslint-loader": "^4.0.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
@@ -83,15 +86,15 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged --no-stash"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "*.+(js|jsx)": [
-      "npm run eslint.fix"
+      "npm run eslint:fix"
     ],
     "*.+(css|scss)": [
-      "npm run stylelint.fix"
+      "npm run stylelint:fix"
     ]
   },
   "jest": {

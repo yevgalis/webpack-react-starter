@@ -63,6 +63,15 @@ module.exports = {
     strictExportPresence: true,
     rules: [
       {
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'eslint-loader',
+        options: {
+          quiet: true
+        }
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
