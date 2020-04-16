@@ -7,8 +7,7 @@
 
 # Usage
 ### `npm install`
-Install all dependencies before starting to work on a project.
-
+Install all dependencies before you start working on a project.
 
 ### `npm start`
 Start project on a local server (**`http://localhost:1337/`**)

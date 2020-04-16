@@ -68,6 +68,7 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'eslint-loader',
         options: {
+          cache: true,
           quiet: true
         }
       },
@@ -116,7 +117,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      minify: false,
+      minify: true,
       filename: 'index.html',
       template: path.join(__dirname, './public/index.html')
     }),
