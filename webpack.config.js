@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const GitRevisionPlugin = require('git-revision-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = process.env.NODE_ENV === 'production';
@@ -119,11 +120,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       minify: true,
       filename: 'index.html',
-      template: path.join(__dirname, './public/index.html')
+      template: path.join(__dirname, './public/index.html'),
+      removeEmptyAttributes: true,
+      keepClosingSlash: true,
+      minifyJS: true,
+      minifyCSS: true,
+      minifyURLs: true
     }),
     new MiniCssExtractPlugin({
-      filename: isDevelopment ? 'css/style.css' : 'css/style.[hash:8].css',
-      chunkFilename: isDevelopment ? 'css/[id].css' : 'css/[id].[hash:8].css'
+      filename: isProduction ? 'css/style.[hash:8].css' : 'css/style.css',
+      chunkFilename: isProduction ? 'css/[id].[hash:8].css' : 'css/[id].css'
     }),
     new CopyPlugin([
       {
@@ -131,7 +137,8 @@ module.exports = {
         to: path.join(__dirname, 'build')
       }
     ]),
-    new CaseSensitivePathsPlugin(),
-    new Dotenv()
-  ]
+    new Dotenv(),
+    isDevelopment && new CaseSensitivePathsPlugin(),
+    isProduction && new GitRevisionPlugin()
+  ].filter(Boolean)
 };
