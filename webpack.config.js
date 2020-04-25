@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -12,7 +13,7 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  mode: isDevelopment ? 'none' : 'production',
+  mode: isProduction ? 'production' : 'development',
   bail: isProduction,
   devtool: isDevelopment ? 'cheap-module-source-map' : 'none',
   entry: './src/index.js',
@@ -28,6 +29,10 @@ module.exports = {
     historyApiFallback: true
   },
   optimization: {
+    splitChunks: {
+      chunks: 'all',
+      name: false
+    },
     minimize: isProduction,
     minimizer: [
       new TerserPlugin({
@@ -54,11 +59,7 @@ module.exports = {
           extractComments: false
         }
       })
-    ],
-    splitChunks: {
-      chunks: 'all',
-      name: false,
-    }
+    ]
   },
   module: {
     strictExportPresence: true,
@@ -77,8 +78,8 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
-        },
+          loader: 'babel-loader'
+        }
       },
       {
         test: /.(css|scss)$/,
@@ -93,12 +94,25 @@ module.exports = {
         ]
       },
       {
-        test: /.(bmp|jpg|jpeg|png|gif|svg)$/,
+        test: /.(bmp|jpg|jpeg|png|gif)$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'img/[name].[hash:8].[ext]',
-        },
+          name: 'img/[name].[hash:8].[ext]'
+        }
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          '@svgr/webpack',
+          {
+            loader: 'svg-url-loader',
+            options: {
+              limit: 10000,
+              name: 'img/[name].[hash:8].[ext]'
+            }
+          }
+        ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -108,7 +122,7 @@ module.exports = {
             options: {
               name: '[name].[ext]',
               outputPath: 'fonts/',
-              publicPath: '../fonts',
+              publicPath: '../fonts'
             }
           }
         ]
@@ -128,8 +142,8 @@ module.exports = {
       minifyURLs: true
     }),
     new MiniCssExtractPlugin({
-      filename: isProduction ? 'css/style.[hash:8].css' : 'css/style.css',
-      chunkFilename: isProduction ? 'css/[id].[hash:8].css' : 'css/[id].css'
+      filename: 'css/style.[hash:8].css',
+      chunkFilename: 'css/[id].[hash:8].css'
     }),
     new CopyPlugin([
       {
@@ -139,6 +153,7 @@ module.exports = {
     ]),
     new Dotenv(),
     isDevelopment && new CaseSensitivePathsPlugin(),
+    isProduction && new webpack.NoEmitOnErrorsPlugin(),
     isProduction && new GitRevisionPlugin()
   ].filter(Boolean)
 };
