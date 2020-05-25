@@ -145,12 +145,11 @@ module.exports = {
       filename: 'css/style.[hash:8].css',
       chunkFilename: 'css/[id].[hash:8].css'
     }),
-    new CopyPlugin([
-      {
-        from: 'public/robots.txt',
-        to: path.join(__dirname, 'build')
-      }
-    ]),
+    new CopyPlugin({
+      patterns: [
+        { from: 'public/robots.txt', to: path.join(__dirname, 'build') }
+      ]
+    }),
     new Dotenv(),
     isDevelopment && new CaseSensitivePathsPlugin(),
     isProduction && new webpack.NoEmitOnErrorsPlugin(),

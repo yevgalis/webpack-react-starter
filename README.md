@@ -1,7 +1,7 @@
 # General info
-**`webpack-react-starter`** is a boilerplate intended for use in `React` projects. The main goal for creating it was the desire to understand how `webpack` works and how to use it alongside other modern instruments for web development.
+**`webpack-react-starter`** is a boilerplate intended for use in **`React`** projects. The main goal for creating it was the desire to understand how **`webpack`** works and how to use it alongside other modern instruments for web development.
 
-> **NOTE:** *This bundle doesn't include `Redux` and `Typescript` as I don't use them yet. Maybe I'll add them later if necessary.*
+> **NOTE:** *This bundle doesn't include **`Redux`** and **`Typescript`** as I don't use them yet. Maybe I'll add them later if necessary.*
 
 ***
 
@@ -11,7 +11,7 @@ Install all dependencies before you start working on a project.
 
 ### `npm start`
 Start project on a local server (**`http://localhost:1337/`**)
-> *the port can be changed in **`webpack.config.js`** file in **`devServer`** section*
+> *the port can be changed in **`webpack.config.js`** in **`devServer`** section*
 
 ### `npm run build`
 Build project for deployment.
@@ -30,13 +30,13 @@ Run linters (Eslint, Stylelint) and tests (Jest, Enzyme).
 * React
   * React Router
   * Prop Types
+* SCSS support
 * PostCSS
   * Minification
   * Autoprefixer
   * Fix [flexbug's](https://github.com/philipwalton/flexbugs) issues
   * Polyfills for modern CSS features
-* SCSS support
-* Eslint
+* ESLint
 * Stylelint
 * Jest
 * Enzyme
@@ -44,7 +44,7 @@ Run linters (Eslint, Stylelint) and tests (Jest, Enzyme).
 
 ***
 
-# Eslint
+# ESLint
 The [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) is taken as a basis, but a number of changes have been made to the rules based on my personal preferences.
 
 ***
