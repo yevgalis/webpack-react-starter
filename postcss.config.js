@@ -4,7 +4,6 @@ if (process.env.NODE_ENV === 'production') {
     plugins: {
       'postcss-flexbugs-fixes': {},
       'postcss-preset-env': { stage: 3 },
-      'autoprefixer': {},
       'cssnano': {}
     }
   };
