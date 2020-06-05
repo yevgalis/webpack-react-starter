@@ -1,6 +1,4 @@
-const isProduction = process.env.NODE_ENV === 'production';
-
-if (isProduction) {
+if (process.env.NODE_ENV === 'production') {
   module.exports = {
     parser: 'postcss-safe-parser',
     plugins: {
