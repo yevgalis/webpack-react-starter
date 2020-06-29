@@ -128,14 +128,15 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      minify: true,
       filename: 'index.html',
       template: path.join(__dirname, './public/index.html'),
-      removeEmptyAttributes: true,
-      keepClosingSlash: true,
-      minifyJS: true,
-      minifyCSS: true,
-      minifyURLs: true
+      minify: {
+        removeEmptyAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      }
     }),
     new MiniCssExtractPlugin({
       filename: 'css/style.[hash:8].css',
