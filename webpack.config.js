@@ -8,6 +8,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const gitRevisionPlugin = new GitRevisionPlugin();
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = process.env.NODE_ENV === 'production';
@@ -64,16 +65,6 @@ module.exports = {
   module: {
     strictExportPresence: true,
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'eslint-loader',
-        options: {
-          cache: true,
-          quiet: true
-        }
-      },
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
@@ -155,9 +146,14 @@ module.exports = {
         { from: 'public/robots.txt', to: path.join(__dirname, 'build') }
       ]
     }),
+    gitRevisionPlugin,
+    new webpack.DefinePlugin({
+      'GIT_VERSION': JSON.stringify(gitRevisionPlugin.version()),
+      'GIT_COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
+      'GIT_BRANCH': JSON.stringify(gitRevisionPlugin.branch()),
+    }),
     new Dotenv(),
     isDevelopment && new CaseSensitivePathsPlugin(),
-    isProduction && new webpack.NoEmitOnErrorsPlugin(),
-    isProduction && new GitRevisionPlugin()
+    isProduction && new webpack.NoEmitOnErrorsPlugin()
   ].filter(Boolean)
 };

@@ -34,6 +34,11 @@
       "babel-module": {}
     }
   },
+  "globals": {
+    "GIT_VERSION": "readonly",
+    "GIT_COMMITHASH": "readonly",
+    "GIT_BRANCH": "readonly"
+  },
   "rules": {
     // ======= VARIABLES ======= //
     "no-var": "error",
