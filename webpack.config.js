@@ -19,7 +19,7 @@ module.exports = {
   devtool: isDevelopment ? 'cheap-module-source-map' : 'none',
   entry: './src/index.js',
   output: {
-    filename: 'js/bundle.[hash:8].js',
+    filename: 'js/bundle.[contenthash:8].js',
     path: path.join(__dirname, 'build')
   },
   devServer: {
@@ -129,6 +129,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
+      inject: true,
       template: path.join(__dirname, './public/index.html'),
       minify: {
         removeEmptyAttributes: true,
@@ -139,8 +140,8 @@ module.exports = {
       }
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/style.[hash:8].css',
-      chunkFilename: 'css/[id].[hash:8].css'
+      filename: 'css/style.[contenthash:8].css',
+      chunkFilename: 'css/[id].[contenthash:8].css'
     }),
     new CopyPlugin({
       patterns: [
