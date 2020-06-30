@@ -129,10 +129,15 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      inject: true,
       template: path.join(__dirname, './public/index.html'),
+      inject: true,
       minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
         removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: false,
         keepClosingSlash: true,
         minifyJS: true,
         minifyCSS: true,
@@ -144,9 +149,12 @@ module.exports = {
       chunkFilename: 'css/[id].[contenthash:8].css'
     }),
     new CopyPlugin({
-      patterns: [
-        { from: 'public/robots.txt', to: path.join(__dirname, 'build') }
-      ]
+      patterns: [{
+        from: 'public',
+        globOptions: {
+          ignore: ['**/index.html']
+        },
+      }]
     }),
     gitRevisionPlugin,
     new webpack.DefinePlugin({
