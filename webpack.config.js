@@ -8,7 +8,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
-const gitRevisionPlugin = new GitRevisionPlugin();
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = process.env.NODE_ENV === 'production';
@@ -19,7 +18,7 @@ module.exports = {
   devtool: isDevelopment ? 'cheap-module-source-map' : 'none',
   entry: './src/index.js',
   output: {
-    filename: 'js/bundle.[contenthash:8].js',
+    filename: 'js/bundle.[hash:8].js',
     path: path.join(__dirname, 'build')
   },
   devServer: {
@@ -145,25 +144,21 @@ module.exports = {
       }
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/style.[contenthash:8].css',
-      chunkFilename: 'css/[id].[contenthash:8].css'
+      filename: 'css/style.[hash:8].css',
+      chunkFilename: 'css/[id].[hash:8].css'
     }),
     new CopyPlugin({
       patterns: [{
         from: 'public',
+        to: path.join(__dirname, 'build'),
         globOptions: {
           ignore: ['**/index.html']
         },
       }]
     }),
-    gitRevisionPlugin,
-    new webpack.DefinePlugin({
-      'GIT_VERSION': JSON.stringify(gitRevisionPlugin.version()),
-      'GIT_COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
-      'GIT_BRANCH': JSON.stringify(gitRevisionPlugin.branch()),
-    }),
     new Dotenv(),
     isDevelopment && new CaseSensitivePathsPlugin(),
-    isProduction && new webpack.NoEmitOnErrorsPlugin()
+    isProduction && new webpack.NoEmitOnErrorsPlugin(),
+    isProduction && new GitRevisionPlugin()
   ].filter(Boolean)
 };
