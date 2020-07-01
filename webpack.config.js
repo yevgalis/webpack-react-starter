@@ -18,8 +18,13 @@ module.exports = {
   devtool: isDevelopment ? 'cheap-module-source-map' : 'none',
   entry: './src/index.js',
   output: {
-    filename: 'js/bundle.[hash:8].js',
-    path: path.join(__dirname, 'build')
+    path: path.join(__dirname, 'build'),
+    filename: isProduction
+      ? 'js/bundle.[contenthash:8].js'
+      : 'js/bundle.js',
+    chunkFilename: isProduction
+      ? 'js/[name].[contenthash:8].chunk.js'
+      : 'js/[name].chunk.js'
   },
   devServer: {
     contentBase: path.join(__dirname, 'build'),
@@ -144,8 +149,8 @@ module.exports = {
       }
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/style.[hash:8].css',
-      chunkFilename: 'css/[id].[hash:8].css'
+      filename: 'css/style.[contenthash:8].css',
+      chunkFilename: 'css/[id].[contenthash:8].css'
     }),
     new CopyPlugin({
       patterns: [{
