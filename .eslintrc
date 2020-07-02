@@ -34,11 +34,6 @@
       "babel-module": {}
     }
   },
-  "globals": {
-    "GIT_VERSION": "readonly",
-    "GIT_COMMITHASH": "readonly",
-    "GIT_BRANCH": "readonly"
-  },
   "rules": {
     // ======= VARIABLES ======= //
     "no-var": "error",
@@ -47,12 +42,10 @@
     "no-multi-assign": "error",
     "one-var": ["error", "never"],
     "prefer-const": ["warn", { "destructuring": "all" }],
-
     // ======= ARRAYS ======= //
     "no-array-constructor": "error",
     "array-callback-return": "error",
     "array-bracket-spacing": "warn",
-
     // ======= OBJECTS / CLASSES ======= //
     "no-new-object": "error",
     "no-new-wrappers": "error",
@@ -61,11 +54,10 @@
     "no-useless-constructor": "error",
     "no-prototype-builtins": "warn",
     "key-spacing": "error",
-    "dot-notation": ["warn", { "allowKeywords": false }],
+    "dot-notation": ["warn", { "allowKeywords": true }],
     "quote-props": ["warn", "as-needed", { "keywords": true }],
     "no-whitespace-before-property": "error",
     "object-curly-spacing": ["warn", "always"],
-
     // ======= FUNCTIONS ======= //
     "func-style": ["error", "expression"],
     "no-loop-func": "error",
@@ -84,7 +76,6 @@
     "prefer-rest-params": "warn",
     "prefer-spread": "warn",
     "prefer-arrow-callback": "warn",
-
     // ======= GENERAL INDENT && SPACING ======= //
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "no-multiple-empty-lines": ["error", { "max": 2 }],
@@ -102,22 +93,6 @@
     "computed-property-spacing": "error",
     "generator-star-spacing": ["error", "after"],
     "newline-per-chained-call": ["warn", { "ignoreChainWithDepth": 2 }],
-
-    // ======= IMPORTS ======= //
-    "import/first": "error",
-    "import/exports-last": "error",
-    "import/newline-after-import": "error",
-    "import/no-namespace": "error",
-    "import/no-named-default": "error",
-    "import/no-anonymous-default-export": "error",
-    "import/no-webpack-loader-syntax": "error",
-    "import/no-mutable-exports": "error",
-    "no-duplicate-imports": "error",
-
-    // ======= REACT ======= //
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-
     // ======= MISC ======= //
     "semi": "error",
     "semi-spacing": "error",
@@ -126,11 +101,14 @@
     "comma-style": ["error", "last"],
     "comma-dangle": ["error", "only-multiline"],
     "max-len": ["warn", {
-      "code": 100,
+      "code": 120,
       "ignoreStrings": true,
       "ignoreTemplateLiterals": true
     }],
-    "id-length": ["warn", { "min": 2 }],
+    "id-length": ["warn", {
+      "min": 2,
+      "exceptions": ["i", "e"]
+    }],
     "camelcase": "error",
     "quotes": ["error", "single"],
     "prefer-template": "error",
@@ -143,6 +121,21 @@
     "no-mixed-operators": "error",
     "no-else-return": ["warn", { "allowElseIf": false }],
     "no-console": "warn",
-    "no-alert": "error"
+    "no-alert": "error",
+    // ======= IMPORTS ======= //
+    "import/first": "error",
+    "import/exports-last": "error",
+    "import/newline-after-import": "error",
+    "import/no-namespace": "error",
+    "import/no-named-default": "error",
+    "import/no-anonymous-default-export": "error",
+    "import/no-webpack-loader-syntax": "error",
+    "import/no-mutable-exports": "error",
+    "no-duplicate-imports": "error",
+    // ======= REACT ======= //
+    "react/prop-types": "off",
+    "react/display-name": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

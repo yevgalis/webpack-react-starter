@@ -15,7 +15,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   bail: isProduction,
-  devtool: isDevelopment ? 'cheap-module-source-map' : 'none',
+  devtool: isDevelopment ? 'cheap-module-source-map' : 'source-map',
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, 'build'),
@@ -67,7 +67,6 @@ module.exports = {
     ]
   },
   module: {
-    strictExportPresence: true,
     rules: [
       {
         test: /\.(js|jsx)$/,
@@ -87,9 +86,7 @@ module.exports = {
           'postcss-loader',
           {
             loader: 'sass-loader',
-            options: {
-              sassOptions: { outputStyle: 'expanded' }
-            }
+            options: { sassOptions: { outputStyle: 'expanded' }}
           }
         ]
       },
