@@ -30,7 +30,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'build'),
     open: true,
     hot: true,
-    port: 1337,
+    port: 1338,
     historyApiFallback: true
   },
   optimization: {
