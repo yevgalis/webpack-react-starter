@@ -57,7 +57,7 @@
     "dot-notation": ["warn", { "allowKeywords": true }],
     "quote-props": ["warn", "as-needed", { "keywords": true }],
     "no-whitespace-before-property": "error",
-    "object-curly-spacing": ["warn", "always"],
+    "object-curly-spacing": ["warn", "always", { "objectsInObjects": false }],
     // ======= FUNCTIONS ======= //
     "func-style": ["error", "expression"],
     "no-loop-func": "error",
@@ -120,7 +120,7 @@
     "no-unneeded-ternary": "warn",
     "no-mixed-operators": "error",
     "no-else-return": ["warn", { "allowElseIf": false }],
-    "no-console": "warn",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
     "no-alert": "error",
     // ======= IMPORTS ======= //
     "import/first": "error",
