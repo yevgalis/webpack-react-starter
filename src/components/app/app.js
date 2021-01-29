@@ -1,4 +1,3 @@
-import React from 'react';
 import './app.scss';
 import LogoCard from 'components/logo-card/logo-card';
 

@@ -29,8 +29,8 @@
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^6.0.0",
     "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
@@ -73,7 +73,7 @@
     "postcss-loader": "^4.2.0",
     "postcss-preset-env": "^6.7.0",
     "postcss-safe-parser": "^5.0.2",
-    "react-test-renderer": "^16.13.1",
+    "react-test-renderer": "^17.0.1",
     "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0",
     "stylelint": "^13.9.0",

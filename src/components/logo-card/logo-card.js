@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import webpackLogo from 'assets/img/webpack.svg';
 import babelLogo from 'assets/img/babel.svg';
