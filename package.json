@@ -1,8 +1,10 @@
 {
   "name": "webpack-react-starter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Initial webpack setup for React projects",
   "author": "Evgeniy Alishevets",
+  "repository": "https://github.com/yevgalis/webpack-react-starter",
+  "homepage": "https://github.com/yevgalis/webpack-react-starter",
   "license": "MIT",
   "keywords": [
     "webpack",
@@ -10,10 +12,9 @@
     "babel",
     "eslint",
     "stylelint",
-    "jest",
-    "enzyme"
+    "postcss",
+    "jest"
   ],
-  "homepage": "https://github.com/yevgalis/webpack-react-starter",
   "scripts": {
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
     "stylelint:fix": "stylelint \"src/**/*.{css,scss}\" --fix --formatter=verbose",
@@ -50,11 +51,8 @@
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
     "cssnano": "^4.1.10",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.18.0",
     "eslint-import-resolver-babel-module": "^5.2.0",
-    "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",

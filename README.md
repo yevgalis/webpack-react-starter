@@ -17,7 +17,7 @@ Start project on a local server (**`http://localhost:1337/`**)
 Build project for deployment.
 
 ### `npm run test`
-Run linters (Eslint, Stylelint) and tests (Jest, Enzyme).
+Run linters (Eslint, Stylelint) and tests (Jest).
 
 > *All commands can be found in **`package.json`***
 
@@ -39,7 +39,6 @@ Run linters (Eslint, Stylelint) and tests (Jest, Enzyme).
 * ESLint
 * Stylelint
 * Jest
-* Enzyme
 * Husky
 
 ***
