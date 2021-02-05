@@ -12,7 +12,7 @@
     "plugin:import/errors",
     "plugin:import/warnings"
   ],
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -28,7 +28,7 @@
   ],
   "settings": {
     "react": {
-      "version": "16"
+      "version": "17"
     },
     "import/resolver": {
       "babel-module": {}
