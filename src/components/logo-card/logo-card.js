@@ -3,7 +3,7 @@ import webpackLogo from 'assets/img/webpack.svg';
 import babelLogo from 'assets/img/babel.svg';
 import reactLogo from 'assets/img/react.svg';
 import eslintLogo from 'assets/img/eslint.svg';
-import './logo-card.scss';
+import styles from './logo-card.module.scss';
 
 const TYPES = {
   webpack: { name: 'Webpack', src: webpackLogo, doSpin: false },
@@ -14,15 +14,15 @@ const TYPES = {
 
 const LogoCard = ({ type }) => {
   return (
-    <div className="logo__card">
+    <div className={styles.logo__card}>
       <img
-        className={`logo__img ${TYPES[type].doSpin ? 'logo__img--spin' : ''}`}
+        className={`${styles.logo__img} ${TYPES[type].doSpin ? styles['logo__img--spin'] : ''}`}
         src={TYPES[type].src}
         width="80px"
         height="80px"
         alt={`${TYPES[type].name} logo`}
       />
-      <h3 className="logo__title">{TYPES[type].name}</h3>
+      <h3 className={styles.logo__title}>{TYPES[type].name}</h3>
     </div>
   );
 };

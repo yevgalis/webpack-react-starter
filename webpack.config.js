@@ -77,11 +77,28 @@ module.exports = {
       },
       {
         test: /.(css|scss)$/,
+        exclude: /\.module\.(css|scss)$/,
         use: [
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
             options: { importLoaders: 2 }
+          },
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: { sassOptions: { outputStyle: 'expanded' }}
+          }
+        ]
+      },
+      {
+        test: /.(css|scss)$/,
+        include: /\.module\.(css|scss)$/,
+        use: [
+          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 2, modules: true }
           },
           'postcss-loader',
           {
