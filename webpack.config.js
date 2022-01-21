@@ -7,7 +7,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const GitRevisionPlugin = require('git-revision-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = process.env.NODE_ENV === 'production';
@@ -160,6 +159,5 @@ module.exports = {
     new Dotenv(),
     isDevelopment && new CaseSensitivePathsPlugin(),
     isProduction && new webpack.NoEmitOnErrorsPlugin(),
-    isProduction && new GitRevisionPlugin()
   ].filter(Boolean)
 };
