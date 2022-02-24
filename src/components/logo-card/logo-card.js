@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import webpackLogo from 'assets/img/webpack.svg';
 import babelLogo from 'assets/img/babel.svg';
 import reactLogo from 'assets/img/react.svg';
@@ -25,10 +24,6 @@ const LogoCard = ({ type }) => {
       <h3 className={styles.logo__title}>{TYPES[type].name}</h3>
     </div>
   );
-};
-
-LogoCard.propTypes = {
-  type: PropTypes.string.isRequired
 };
 
 export default LogoCard;
