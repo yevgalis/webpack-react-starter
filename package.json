@@ -1,6 +1,6 @@
 {
-  "name": "webpack-react-starter",
-  "version": "2.0.0",
+  "name": "react-starter-kit",
+  "version": "3.0.0",
   "description": "Initial webpack setup for React projects",
   "author": "Evgeniy Alishevets",
   "repository": "https://github.com/yevgalis/webpack-react-starter",
@@ -9,78 +9,77 @@
   "keywords": [
     "webpack",
     "react",
+    "typescript",
     "babel",
     "eslint",
-    "stylelint",
-    "postcss"
+    "stylelint"
   ],
   "scripts": {
-    "stylelint": "stylelint \"src/**/*.{css,scss}\"",
-    "stylelint:fix": "stylelint \"src/**/*.{css,scss}\" --fix --formatter=verbose",
-    "eslint": "eslint --ext .jsx --ext .js src/",
-    "eslint:fix": "eslint --fix --ext .jsx --ext .js src/",
-    "start": "cross-env NODE_ENV=development webpack-dev-server",
-    "build": "cross-env NODE_ENV=production webpack"
+    "start": "cross-env NODE_ENV=development webpack serve",
+    "build": "cross-env NODE_ENV=production webpack",
+    "eslint": "eslint --ext .js,.jsx,.ts,.tsx ./",
+    "eslint-fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ./",
+    "stylelint": "stylelint \"src/{**/*,*}.{css,scss}\"",
+    "stylelint-fix": "stylelint \"src/{**/*,*}.{css,scss}\" --fix --formatter=verbose"
   },
   "dependencies": {
-    "@babel/runtime": "7.17.2",
-    "dotenv": "14.2.0",
-    "dotenv-webpack": "6.0.4",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-router-dom": "6.2.1"
+    "@babel/runtime": "7.20.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.4.3"
   },
   "devDependencies": {
-    "@babel/core": "7.17.5",
-    "@babel/eslint-parser": "7.17.0",
-    "@babel/plugin-proposal-class-properties": "7.16.7",
-    "@babel/plugin-proposal-logical-assignment-operators": "7.16.7",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "7.16.7",
-    "@babel/plugin-proposal-object-rest-spread": "7.17.3",
-    "@babel/plugin-proposal-optional-chaining": "7.16.7",
-    "@babel/plugin-syntax-dynamic-import": "7.8.3",
-    "@babel/plugin-transform-runtime": "7.17.0",
-    "@babel/preset-env": "7.16.11",
-    "@babel/preset-react": "7.16.7",
-    "@svgr/webpack": "5.5.0",
-    "babel-loader": "8.2.3",
-    "babel-plugin-module-resolver": "4.1.0",
+    "@babel/cli": "7.19.3",
+    "@babel/core": "7.20.2",
+    "@babel/eslint-parser": "7.19.1",
+    "@babel/plugin-transform-runtime": "7.19.6",
+    "@babel/preset-env": "7.20.2",
+    "@babel/preset-react": "7.18.6",
+    "@svgr/webpack": "6.5.1",
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.9",
+    "@types/react-router-dom": "5.3.3",
+    "@typescript-eslint/eslint-plugin": "5.43.0",
+    "@typescript-eslint/parser": "5.43.0",
+    "babel-loader": "9.1.0",
     "case-sensitive-paths-webpack-plugin": "2.4.0",
     "clean-webpack-plugin": "4.0.0",
-    "copy-webpack-plugin": "6.4.0",
+    "copy-webpack-plugin": "11.0.0",
     "cross-env": "7.0.3",
-    "css-loader": "5.2.7",
-    "cssnano": "5.0.17",
-    "eslint": "8.9.0",
-    "eslint-import-resolver-babel-module": "5.3.1",
-    "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-jsx-a11y": "6.5.1",
-    "eslint-plugin-react": "7.28.0",
-    "eslint-plugin-react-hooks": "4.3.0",
-    "file-loader": "6.2.0",
-    "html-webpack-plugin": "4.5.1",
+    "css-loader": "6.7.2",
+    "cssnano": "5.1.14",
+    "eslint": "8.27.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.6.1",
+    "eslint-plugin-react": "7.31.10",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-webpack-plugin": "3.2.0",
+    "html-webpack-plugin": "5.5.0",
     "husky": "4.3.8",
     "lint-staged": "10.5.4",
-    "mini-css-extract-plugin": "1.6.2",
-    "postcss": "8.4.6",
+    "mini-css-extract-plugin": "2.6.1",
+    "postcss": "8.4.19",
     "postcss-flexbugs-fixes": "5.0.2",
-    "postcss-import": "14.0.2",
-    "postcss-loader": "4.2.0",
-    "postcss-preset-env": "7.4.1",
+    "postcss-import": "15.0.0",
+    "postcss-loader": "7.0.1",
+    "postcss-preset-env": "7.8.3",
     "postcss-safe-parser": "6.0.0",
-    "sass": "1.49.8",
-    "sass-loader": "10.1.1",
-    "style-loader": "2.0.0",
-    "stylelint": "14.5.0",
-    "stylelint-config-standard": "24.0.0",
-    "stylelint-config-standard-scss": "3.0.0",
-    "stylelint-scss": "4.1.0",
-    "svg-url-loader": "7.1.1",
-    "terser-webpack-plugin": "4.2.3",
-    "url-loader": "4.1.1",
-    "webpack": "4.44.2",
-    "webpack-cli": "3.3.12",
-    "webpack-dev-server": "3.11.2"
+    "sass": "1.56.1",
+    "sass-loader": "13.2.0",
+    "style-loader": "3.3.1",
+    "stylelint": "14.15.0",
+    "stylelint-config-standard": "29.0.0",
+    "stylelint-config-standard-scss": "6.1.0",
+    "stylelint-webpack-plugin": "3.3.0",
+    "svg-url-loader": "8.0.0",
+    "terser-webpack-plugin": "5.3.6",
+    "ts-loader": "9.4.1",
+    "typescript": "4.8.4",
+    "webpack": "5.75.0",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.11.1"
   },
   "husky": {
     "hooks": {
@@ -88,27 +87,20 @@
     }
   },
   "lint-staged": {
-    "*.+(js|jsx)": [
-      "npm run eslint:fix"
+    "*.+(js|jsx|ts|tsx)": [
+      "npm run eslint-fix"
     ],
     "*.+(css|scss)": [
-      "npm run stylelint:fix"
+      "npm run stylelint-fix"
     ]
   },
   "engines": {
-    "node": "12"
+    "node": "14"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all",
-      "ie 11"
-    ],
-    "development": [
-      "last 2 chrome version",
-      "last 2 firefox version",
-      "last 2 safari version"
-    ]
-  }
+  "browserslist": [
+    ">0.3%",
+    "not ie 11",
+    "not dead",
+    "not op_mini all"
+  ]
 }

@@ -1,0 +1,28 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    height: 100%;
+    font-family: "Segoe UI", sans-serif;
+    word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+}
+
+#root {
+    height: 100%;
+}

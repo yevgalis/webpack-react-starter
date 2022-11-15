@@ -1,16 +1,5 @@
-# Third party
-**/node_modules
-bower_components/*
-
-# Build products
 build/
+dist/
 public/
-coverage/
-
-# Misc
+.idea
 .vscode
-*.config.js
-.eslintrc.js
-.webpack
-.serverless
-_warmup

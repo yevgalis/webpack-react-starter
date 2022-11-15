@@ -1,60 +1,89 @@
 const path = require('path');
-const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+const EslintWebpackPlugin = require('eslint-webpack-plugin');
+const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 
-const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  mode: isProduction ? 'production' : 'development',
+  mode: process.env.NODE_ENV || 'production',
   bail: isProduction,
-  devtool: isDevelopment ? 'cheap-module-source-map' : 'source-map',
-  entry: './src/index.js',
+  devtool: isProduction ? 'source-map' : 'inline-source-map',
+  entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, 'build'),
-    filename: isProduction
-      ? 'js/bundle.[contenthash:8].js'
-      : 'js/bundle.js',
-    chunkFilename: isProduction
-      ? 'js/[name].[contenthash:8].chunk.js'
-      : 'js/[name].chunk.js'
+    filename: 'js/[name].[contenthash:8].js',
   },
   devServer: {
-    contentBase: path.join(__dirname, 'build'),
+    'static': {
+      directory: path.join(__dirname, 'build'),
+    },
     open: true,
     hot: true,
     port: 1337,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   optimization: {
-    splitChunks: {
-      chunks: 'all',
-      name: false
-    },
     minimize: isProduction,
     minimizer: [
       new TerserPlugin({
         terserOptions: {
-          output: { comments: false }
+          output: {
+            comments: false,
+          },
         },
-        extractComments: false
-      })
-    ]
+        extractComments: false,
+      }),
+    ],
+    splitChunks: {
+      chunks: 'all',
+    },
+    runtimeChunk: true,
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: 'ts-loader',
+      },
+
+      {
+        test: /.(css|scss)$/,
+        include: /\.module\.(css|scss)$/,
+        use: [
+          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              modules: {
+                localIdentName: '[sha1:hash:hex:8]',
+              },
+            },
+          },
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                outputStyle: 'expanded',
+              },
+            },
+          },
+        ],
       },
       {
         test: /.(css|scss)$/,
@@ -63,38 +92,32 @@ module.exports = {
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
-            options: { importLoaders: 2 }
+            options: {
+              importLoaders: 2,
+            },
           },
           'postcss-loader',
           {
             loader: 'sass-loader',
-            options: { sassOptions: { outputStyle: 'expanded' }}
-          }
-        ]
-      },
-      {
-        test: /.(css|scss)$/,
-        include: /\.module\.(css|scss)$/,
-        use: [
-          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-          {
-            loader: 'css-loader',
-            options: { importLoaders: 2, modules: true }
+            options: {
+              sassOptions: {
+                outputStyle: 'expanded',
+              },
+            },
           },
-          'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: { sassOptions: { outputStyle: 'expanded' }}
-          }
-        ]
+        ],
       },
       {
         test: /.(bmp|jpg|jpeg|png|gif)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: 'img/[name].[hash:8].[ext]'
-        }
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024,
+          },
+        },
+        generator: {
+          filename: 'images/[name].[hash:8][ext]',
+        },
       },
       {
         test: /\.svg$/,
@@ -104,25 +127,18 @@ module.exports = {
             loader: 'svg-url-loader',
             options: {
               limit: 10000,
-              name: 'img/[name].[hash:8].[ext]'
-            }
-          }
-        ]
+              name: 'images/[name].[hash:8].[ext]',
+            },
+          },
+        ],
       },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/',
-              publicPath: '../fonts'
-            }
-          }
-        ]
-      }
-    ]
+    ],
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -140,24 +156,30 @@ module.exports = {
         keepClosingSlash: true,
         minifyJS: true,
         minifyCSS: true,
-        minifyURLs: true
-      }
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'css/style.[contenthash:8].css',
-      chunkFilename: 'css/[id].[contenthash:8].css'
+        minifyURLs: true,
+      },
     }),
     new CopyPlugin({
       patterns: [{
         from: 'public',
         to: path.join(__dirname, 'build'),
         globOptions: {
-          ignore: ['**/index.html']
+          ignore: ['**/index.html'],
         },
-      }]
+      }],
     }),
-    new Dotenv(),
-    isDevelopment && new CaseSensitivePathsPlugin(),
-    isProduction && new webpack.NoEmitOnErrorsPlugin(),
-  ].filter(Boolean)
+    new MiniCssExtractPlugin({
+      filename: 'css/style.[contenthash:8].css',
+      chunkFilename: 'css/[id].[contenthash:8].css',
+    }),
+    new EslintWebpackPlugin({
+      files: '{**/*,*}.{js,jsx,ts,tsx}',
+      emitWarning: false,
+    }),
+    new StylelintWebpackPlugin({
+      files: '{**/*,*}.{css,scss}',
+      emitWarning: false,
+    }),
+    new CaseSensitivePathsPlugin(),
+  ].filter(Boolean),
 };
