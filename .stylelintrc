@@ -1,15 +1,18 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
   "ignoreFiles": [
+    "build/**/*.html",
     "build/**/*.css",
-    "build/**/*.html"
+    "dist/**/*.html",
+    "dist/**/*.css",
+    "public/**/*.html",
+    "public/**/*.css"
   ],
-  "plugins": ["stylelint-scss"],
   "rules": {
     "color-hex-case": "lower",
     "color-hex-length": "long",
     "color-no-invalid-hex": true,
-    "comment-empty-line-before": "never",
+    "comment-empty-line-before": ["never", {"ignore": ["after-comment", "stylelint-commands"]}],
     "font-family-name-quotes": "always-unless-keyword",
     "font-family-no-duplicate-names": true,
     "font-family-no-missing-generic-family-keyword": true,
@@ -120,7 +123,7 @@
     "at-rule-no-vendor-prefix": true,
     "at-rule-semicolon-newline-after": "always",
     "comment-no-empty": true,
-    "indentation": 2,
+    "indentation": 4,
     "max-empty-lines": 2,
     "no-duplicate-selectors": true,
     "no-duplicate-at-import-rules": true,
@@ -129,7 +132,6 @@
     "no-extra-semicolons": true,
     "no-invalid-double-slash-comments": true,
     "no-missing-end-of-source-newline": true,
-    "scss/at-import-partial-extension": "always",
     "selector-class-pattern": null
   }
 }

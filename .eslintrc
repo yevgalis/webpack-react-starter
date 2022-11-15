@@ -1,36 +1,37 @@
 {
+  "root": true,
   "env": {
-    "es6": true,
     "browser": true,
-    "commonjs": true
+    "node": true
   },
   "extends": [
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended"
   ],
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    },
-    "ecmaVersion": 6,
-    "sourceType": "module"
+    }
   },
-  "plugins": [
-    "react",
-    "react-hooks",
-    "jsx-a11y",
-    "import"
-  ],
   "settings": {
     "react": {
-      "version": "17"
+      "version": "detect"
     },
     "import/resolver": {
-      "babel-module": {}
+      "alias": {
+        "map": [
+          ["@", "./src"]
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+      }
     }
   },
   "rules": {
@@ -73,6 +74,10 @@
       "max": 3
     }],
     "no-loop-func": "error",
+    "no-await-in-loop": "error",
+    "no-return-await": "error",
+    "require-atomic-updates": "error",
+    "max-nested-callbacks": ["error", 3],
     "no-new-func": "error",
     "no-confusing-arrow": "error",
     "no-return-assign": "error",
@@ -137,11 +142,15 @@
     "semi-style": "error",
     "comma-spacing": "error",
     "comma-style": ["error", "last"],
-    "comma-dangle": ["error", {
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": ["error", {
       "arrays": "always-multiline",
       "objects": "always-multiline",
       "imports": "always-multiline",
       "exports": "always-multiline",
+      "enums": "always-multiline",
+      "generics": "always-multiline",
+      "tuples": "always-multiline",
       "functions": "never"
     }],
     "max-len": ["warn", {
@@ -166,7 +175,7 @@
     "no-else-return": ["warn", {
       "allowElseIf": false
     }],
-    "no-console": ["warn", {
+    "no-console": ["error", {
       "allow": ["warn", "error"]
     }],
     "no-alert": "error",
@@ -186,6 +195,8 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-var-requires": 0
   }
 }
