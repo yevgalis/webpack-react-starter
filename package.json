@@ -1,6 +1,6 @@
 {
   "name": "react-starter-kit",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Initial webpack setup for React projects",
   "author": "Evgeniy Alishevets",
   "repository": "https://github.com/yevgalis/webpack-react-starter",

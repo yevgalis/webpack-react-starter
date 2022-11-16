@@ -70,7 +70,7 @@ module.exports = {
             options: {
               importLoaders: 2,
               modules: {
-                localIdentName: '[sha1:hash:hex:8]',
+                localIdentName: isProduction ? '[hash:base64]' : '[path]-[name]__[local]',
               },
             },
           },
@@ -93,6 +93,7 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
+              modules: false,
               importLoaders: 2,
             },
           },
@@ -108,11 +109,11 @@ module.exports = {
         ],
       },
       {
-        test: /.(bmp|jpg|jpeg|png|gif)$/,
+        test: /.(jpg|jpeg|png)$/,
         type: 'asset',
         parser: {
           dataUrlCondition: {
-            maxSize: 8 * 1024,
+            maxSize: 10 * 1024,
           },
         },
         generator: {

@@ -36,8 +36,10 @@
   },
   "rules": {
     "no-var": "error",
-    "no-unused-vars": "error",
-    "no-use-before-define": ["error", {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error", {
       "functions": true,
       "classes": true,
       "variables": true
@@ -64,7 +66,8 @@
     "dot-notation": "error",
     "no-whitespace-before-property": "error",
     "no-multi-spaces": "error",
-    "object-curly-spacing": ["error", "always", {
+    "object-curly-spacing": "off",
+    "@typescript-eslint/object-curly-spacing": ["error", "always", {
       "arraysInObjects": true,
       "objectsInObjects": false
     }],
@@ -100,7 +103,8 @@
     "prefer-spread": "error",
     "prefer-arrow-callback": "error",
     "require-await": "error",
-    "indent": ["error", 2, {
+    "indent": "off",
+    "@typescript-eslint/indent":["error", 2, {
       "SwitchCase": 1
     }],
     "no-multiple-empty-lines": ["error", {
