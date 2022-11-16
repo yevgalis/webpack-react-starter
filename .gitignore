@@ -15,6 +15,7 @@ Thumbs.db
 # testing & production
 /coverage
 /build
+/dist
 
 # misc
 .env.local

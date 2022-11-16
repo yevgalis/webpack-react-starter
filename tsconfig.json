@@ -20,7 +20,7 @@
     "removeComments": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [ "./src/*" ]
+      "@/*": ["./src/*"]
     },
     "typeRoots": [
       "./types",
@@ -34,6 +34,7 @@
   "exclude": [
     "node_modules",
     "types",
-    "build"
+    "build",
+    "dist"
   ]
 }
