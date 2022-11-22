@@ -1,52 +1,147 @@
-# General info
-**`webpack-react-starter`** is a boilerplate intended for use in **`React`** projects. The main goal for creating it was the desire to understand how **`webpack`** works and how to use it alongside other modern instruments for web development.
+## Introduction
 
-> **NOTE:** *This bundle doesn't include **`Redux`** and **`Typescript`** as I don't use them yet. Maybe I'll add them later if necessary.*
+This is a webpack boilerplate for React projects. It includes `typescript`, `babel`, support for `css-modules`, `scss`, runs `eslint` and `stylelint` on commit (pre-commit hook using `husky` and `lint-staged`) etc.
 
-***
+## Table Of Contents:
+- [Usage](#usage)
+- [Tools](#tools)
+- [Features](#features)
+  - [ESLint](#eslint)
+  - [Stylelint](#stylelint)
+  - [Import aliases](#import-aliases)
+  - [CSS-modules](#css-modules)
+  - [SVG](#svg)
+  - [Husky and Lint-staged](#husky-and-lint-staged)
 
-# Usage
+---
+
+## Usage
+
 ### `npm install`
 Install all dependencies before you start working on a project.
 
-### `npm start`
-Start project on a local server (**`http://localhost:1337/`**)
-> *the port can be changed in **`webpack.config.js`** in **`devServer`** section*
+### `npm run start`
+Start project on a local server (port 1337).
 
 ### `npm run build`
 Build project for deployment.
 
-### `npm run test`
-Run linters (Eslint, Stylelint) and tests (Jest).
+### `npm run eslint`
+Run [ESLint](https://eslint.org/) on your project. If you want eslint to try to automatically fix as many issues as possible run `npm run eslint-fix`.
 
-> *All commands can be found in **`package.json`***
+### `npm run stylelint`
+Run [Stylelint](https://stylelint.io/) on your project. If you want stylelint to try to automatically fix as many issues as possible run `npm run stylelint-fix`.
 
-***
+---
 
+# Tools
 
-# Tools & Features
-* Webpack
-* Babel
-* React
-  * React Router
-  * Prop Types
-* SCSS support
-* PostCSS
-  * Minification
-  * Autoprefixer
-  * Fix [flexbug's](https://github.com/philipwalton/flexbugs) issues
-  * Polyfills for modern CSS features
-* ESLint
-* Stylelint
-* Jest
-* Husky
+- Webpack
+- Babel
+- React
+- React Router
+- TypeScript
+- PostCSS
+  - Minification
+  - Autoprefixer
+  - Fix known [flexbox bugs](https://github.com/philipwalton/flexbugs)
+  - Polyfills for modern CSS features
+- CSS modules support
+- SCSS support
+- ESLint
+- Stylelint
+- Husky
+- Lint-staged
 
-***
+---
 
-# ESLint
+## Features
+
+### ESLint
 The [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) is taken as a basis, but a number of changes have been made to the rules based on my personal preferences.
 
-***
-
-# Stylelint
+### Stylelint
 Based on [HTML Academy](https://github.com/htmlacademy/stylelint-config-htmlacademy) stylelint configuration.
+
+### Import aliases
+When importing local components / styles / utils you can use alias `@` that builds paths relative to `src` folder.
+
+```jsx
+// basic relative path
+import App from '../../../components/app/app';
+import styles from '../../../styles/grid.module.css';
+
+// alias
+import App from '@/components/app/app';
+import styles from '@/styles/grid.module.css';
+```
+
+### CSS-modules
+To use CSS modules you must inclue '***.module***' into styles file name (e.g. `app.module.css`). It is needed for webpack to generate unique class names during build proccess. Name for a production build is generated as ***base64***. For development it is generated as a ***path_to_module--module_name__local_class_name*** for the purposes of debugging. For more information, please see webpack documentation for [css-loader](https://webpack.js.org/loaders/css-loader/#modules).
+
+Import of css styles inside component should be done as a react component import:
+
+```css
+/* app.module.css */
+.title {
+    color: blue;
+}
+```
+
+```jsx
+// App.js
+import styles from './app.module.css';
+
+export const App = () => {
+    return (
+        <h1 className={styles.title}>Lorem Ipsum</h1>
+    );
+};
+```
+
+Resulting class names:
+```jsx
+// production build
+<h1 class="ebATGE8ngg8SUX036i9G">Lorem ipsum</h1>
+
+// dev
+<h1 className="src-components-app--app-module__title">Lorem ipsum</h1>
+```
+
+### SVG
+You can import svg as a URL to set `src` attribute in `<img />` tag or import it as a component:
+
+```jsx
+import logoUrl from './images/logo-1.svg';
+import { ReactComponent as LogoComponent } from './images/logo-2.svg';
+
+export const App = () => {
+    return (
+        <>
+            <div className="img-wrapper">
+                <img src={logoUrl} alt="Logo-1" />
+            </div>
+            <LogoComponent />
+        </>
+    );
+};
+```
+
+### Husky and Lint-staged
+After you commit local changes, pre-commit hook fires and starts eslint and stylelint with `-fix` option. If you want to change this behavior, change config in `package.json` or disable it completely.
+
+```json
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx|ts|tsx)": [
+      "npm run eslint-fix"
+    ],
+    "*.+(css|scss)": [
+      "npm run stylelint-fix"
+    ]
+  }
+```
