@@ -77,7 +77,7 @@ import styles from '@/styles/grid.module.css';
 ```
 
 ### CSS-modules
-To use CSS modules you must inclue '***.module***' into styles file name (e.g. `app.module.css`). It is needed for webpack to generate unique class names during build proccess. Name for a production build is generated as ***base64***. For development it is generated as a ***path_to_module--module_name__local_class_name*** for the purposes of debugging. For more information, please see webpack documentation for [css-loader](https://webpack.js.org/loaders/css-loader/#modules).
+To use CSS modules you must include '***.module***' into styles file name (e.g. `app.module.css`). It is needed for webpack to generate unique class names during build proccess. Name for a production build is generated as ***base64***. For development it is generated as a ***path_to_module--module_name__local_class_name*** for the purposes of debugging. For more information, please see webpack documentation for [css-loader](https://webpack.js.org/loaders/css-loader/#modules).
 
 Import of css styles inside component should be done as a react component import:
 
@@ -105,7 +105,7 @@ Resulting class names:
 <h1 class="ebATGE8ngg8SUX036i9G">Lorem ipsum</h1>
 
 // dev
-<h1 className="src-components-app--app-module__title">Lorem ipsum</h1>
+<h1 class="src-components-app--app-module__title">Lorem ipsum</h1>
 ```
 
 ### SVG
