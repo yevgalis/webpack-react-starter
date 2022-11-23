@@ -12,6 +12,7 @@
     "color-hex-case": "lower",
     "color-hex-length": "long",
     "color-no-invalid-hex": true,
+    "comment-empty-line-before": null,
     "font-family-name-quotes": "always-unless-keyword",
     "font-family-no-duplicate-names": true,
     "font-family-no-missing-generic-family-keyword": true,
