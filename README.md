@@ -10,7 +10,6 @@ This is a webpack boilerplate for React projects. It includes `typescript`, `bab
   - [Stylelint](#stylelint)
   - [Import aliases](#import-aliases)
   - [CSS-modules](#css-modules)
-  - [SVG](#svg)
   - [Husky and Lint-staged](#husky-and-lint-staged)
 
 ---
@@ -106,25 +105,6 @@ Resulting class names:
 
 // dev
 <h1 class="src-components-app--app-module__title">Lorem ipsum</h1>
-```
-
-### SVG
-You can import svg as a URL to set `src` attribute in `<img />` tag or import it as a component:
-
-```jsx
-import logoUrl from './images/logo-1.svg';
-import { ReactComponent as LogoComponent } from './images/logo-2.svg';
-
-export const App = () => {
-    return (
-        <>
-            <div className="img-wrapper">
-                <img src={logoUrl} alt="Logo-1" />
-            </div>
-            <LogoComponent />
-        </>
-    );
-};
 ```
 
 ### Husky and Lint-staged

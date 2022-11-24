@@ -1,7 +1,7 @@
-import reactLogoUrl from '@/assets/images/react.svg';
-import webpackLogoUrl from '@/assets/images/webpack.svg';
-import { ReactComponent as EslintLogo } from '@/assets/images/eslint.svg';
-import { ReactComponent as BabelLogo } from '@/assets/images/babel.svg';
+import reactLogo from '@/assets/images/react.svg';
+import webpackLogo from '@/assets/images/webpack.svg';
+import eslintLogo from '@/assets/images/eslint.svg';
+import babelLogo from '@/assets/images/babel.svg';
 import styles from './app.module.css';
 
 const App = () => {
@@ -10,16 +10,16 @@ const App = () => {
       <h1 className={styles.header}>React Project Template</h1>
       <div className={styles.logos}>
         <div className={styles['logo-wrapper']}>
-          <img className={styles.logo} src={webpackLogoUrl} alt="Логотип Webpack" />
+          <img className={styles.logo} src={webpackLogo} alt="Webpack logo" />
         </div>
         <div className={styles['logo-wrapper']}>
-          <BabelLogo className={styles.logo} />
+          <img className={styles.logo} src={babelLogo} alt="Babel logo" />
         </div>
         <div className={styles['logo-wrapper']}>
-          <EslintLogo className={styles.logo} />
+          <img className={styles.logo} src={eslintLogo} alt="Eslint logo" />
         </div>
         <div className={styles['logo-wrapper']}>
-          <img className={`${styles.logo} ${styles['logo-spin']}`} src={reactLogoUrl} alt="Логотип React" />
+          <img className={`${styles.logo} ${styles['logo-spin']}`} src={reactLogo} alt="React logo" />
         </div>
       </div>
       {/* eslint-disable-next-line max-len */}

@@ -3,10 +3,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -109,29 +108,23 @@ module.exports = {
         ],
       },
       {
-        test: /.(jpg|jpeg|png)$/,
+        test: /.(jpg|jpeg|png|svg)$/,
         type: 'asset',
-        parser: {
-          dataUrlCondition: {
-            maxSize: 10 * 1024,
-          },
-        },
+        // parser: {
+        //   dataUrlCondition: {
+        //     maxSize: 10 * 1024,
+        //   },
+        // },
         generator: {
           filename: 'images/[name].[hash:8][ext]',
         },
       },
       {
-        test: /\.svg$/,
-        use: [
-          '@svgr/webpack',
-          {
-            loader: 'svg-url-loader',
-            options: {
-              limit: 10000,
-              name: 'images/[name].[hash:8].[ext]',
-            },
-          },
-        ],
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]',
+        },
       },
     ],
   },
@@ -145,7 +138,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.join(__dirname, './public/index.html'),
+      template: path.join(__dirname, './src/index.html'),
       inject: true,
       minify: {
         removeComments: true,
@@ -159,15 +152,6 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true,
       },
-    }),
-    new CopyPlugin({
-      patterns: [{
-        from: 'public',
-        to: path.join(__dirname, 'build'),
-        globOptions: {
-          ignore: ['**/index.html'],
-        },
-      }],
     }),
     new MiniCssExtractPlugin({
       filename: 'css/style.[contenthash:8].css',
