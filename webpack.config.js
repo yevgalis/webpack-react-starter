@@ -110,11 +110,11 @@ module.exports = {
       {
         test: /.(jpg|jpeg|png|svg)$/,
         type: 'asset',
-        // parser: {
-        //   dataUrlCondition: {
-        //     maxSize: 10 * 1024,
-        //   },
-        // },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024,
+          },
+        },
         generator: {
           filename: 'images/[name].[hash:8][ext]',
         },
