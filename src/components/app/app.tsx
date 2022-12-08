@@ -1,5 +1,4 @@
 import reactLogo from '@/assets/images/react.svg';
-import webpackLogo from '@/assets/images/webpack.svg';
 import eslintLogo from '@/assets/images/eslint.svg';
 import babelLogo from '@/assets/images/babel.svg';
 import styles from './app.module.css';
@@ -10,7 +9,7 @@ const App = () => {
       <h1 className={styles.header}>React Project Template</h1>
       <div className={styles.logos}>
         <div className={styles['logo-wrapper']}>
-          <img className={styles.logo} src={webpackLogo} alt="Webpack logo" />
+          <img className={styles.logo} src={require('../../assets/images/webpack.svg')} alt="Webpack logo" />
         </div>
         <div className={styles['logo-wrapper']}>
           <img className={styles.logo} src={babelLogo} alt="Babel logo" />

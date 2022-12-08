@@ -6,8 +6,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
+const robotsTxtConfig = {
+  policy: [
+    {
+      userAgent: '*',
+      disallow: '/',
+    },
+  ],
+};
 
 module.exports = {
   mode: process.env.NODE_ENV || 'production',
@@ -153,6 +162,7 @@ module.exports = {
         minifyURLs: true,
       },
     }),
+    new RobotstxtPlugin(robotsTxtConfig),
     new MiniCssExtractPlugin({
       filename: 'css/style.[contenthash].css',
       chunkFilename: 'css/[id].[contenthash].css',
