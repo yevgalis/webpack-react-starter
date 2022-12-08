@@ -4,9 +4,7 @@
     "build/**/*.html",
     "build/**/*.css",
     "dist/**/*.html",
-    "dist/**/*.css",
-    "public/**/*.html",
-    "public/**/*.css"
+    "dist/**/*.css"
   ],
   "rules": {
     "color-hex-case": "lower",

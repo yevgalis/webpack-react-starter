@@ -16,7 +16,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, 'build'),
-    filename: 'js/[name].[contenthash:8].js',
+    filename: 'js/[name].[contenthash].js',
   },
   devServer: {
     'static': {
@@ -154,8 +154,8 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/style.[contenthash:8].css',
-      chunkFilename: 'css/[id].[contenthash:8].css',
+      filename: 'css/style.[contenthash].css',
+      chunkFilename: 'css/[id].[contenthash].css',
     }),
     new EslintWebpackPlugin({
       files: '{**/*,*}.{js,jsx,ts,tsx}',
