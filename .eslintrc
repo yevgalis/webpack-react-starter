@@ -112,7 +112,7 @@
     }],
     "id-length": ["error", {
       "min": 2,
-      "exceptions": ["i"]
+      "exceptions": ["i", "e"]
     }],
     "space-in-parens": "error",
     "new-parens": "error",
