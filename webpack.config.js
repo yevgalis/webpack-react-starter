@@ -1,11 +1,9 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -24,6 +22,7 @@ module.exports = {
   devtool: isProduction ? 'source-map' : 'inline-source-map',
   entry: './src/index.tsx',
   output: {
+    clean: true,
     path: path.join(__dirname, 'build'),
     filename: 'js/[name].[contenthash].js',
   },
@@ -144,7 +143,6 @@ module.exports = {
     },
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(__dirname, './src/index.html'),
@@ -175,6 +173,5 @@ module.exports = {
       files: '{**/*,*}.{css,scss}',
       emitWarning: false,
     }),
-    new CaseSensitivePathsPlugin(),
   ].filter(Boolean),
 };
