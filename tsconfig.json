@@ -2,8 +2,8 @@
   "compilerOptions": {
     "strict": true,
     "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "ES2020",
+    "moduleResolution": "Node",
     "esModuleInterop": true,
     "downlevelIteration": true,
     "outDir": "./build",
