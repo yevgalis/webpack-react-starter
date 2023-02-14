@@ -1,6 +1,6 @@
 ## Introduction
 
-This is a webpack boilerplate for React projects. It includes `typescript`, `babel`, support for `css-modules`, `scss`, runs `eslint` and `stylelint` on commit (pre-commit hook using `husky` and `lint-staged`) etc.
+This is a webpack boilerplate for React projects. It includes `typescript`, `babel`, support for `css-modules`, runs `eslint` and `stylelint` on commit (pre-commit hook using `husky` and `lint-staged`) etc.
 
 ## Table Of Contents:
 - [Usage](#usage)
@@ -46,7 +46,6 @@ Run [Stylelint](https://stylelint.io/) on your project. If you want stylelint to
   - Fix known [flexbox bugs](https://github.com/philipwalton/flexbugs)
   - Polyfills for modern CSS features
 - CSS modules support
-- SCSS support
 - ESLint
 - Stylelint
 - Husky
@@ -120,7 +119,7 @@ After you commit local changes, pre-commit hook fires and starts eslint and styl
     "*.+(js|jsx|ts|tsx)": [
       "npm run eslint-fix"
     ],
-    "*.+(css|scss)": [
+    "*.+(css)": [
       "npm run stylelint-fix"
     ]
   }
