@@ -68,51 +68,35 @@ module.exports = {
       },
 
       {
-        test: /.(css|scss)$/,
-        include: /\.module\.(css|scss)$/,
+        test: /.css$/,
+        include: /\.module\.css$/,
         use: [
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 2,
+              importLoaders: 1,
               modules: {
                 localIdentName: isProduction ? '[hash:base64]' : '[path]-[name]__[local]',
               },
             },
           },
           'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sassOptions: {
-                outputStyle: 'expanded',
-              },
-            },
-          },
         ],
       },
       {
-        test: /.(css|scss)$/,
-        exclude: /\.module\.(css|scss)$/,
+        test: /.css$/,
+        exclude: /\.module\.css$/,
         use: [
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
             options: {
               modules: false,
-              importLoaders: 2,
+              importLoaders: 1,
             },
           },
           'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sassOptions: {
-                outputStyle: 'expanded',
-              },
-            },
-          },
         ],
       },
       {
@@ -170,7 +154,7 @@ module.exports = {
       emitWarning: false,
     }),
     new StylelintWebpackPlugin({
-      files: '{**/*,*}.{css,scss}',
+      files: '{**/*,*}.css',
       emitWarning: false,
     }),
   ].filter(Boolean),

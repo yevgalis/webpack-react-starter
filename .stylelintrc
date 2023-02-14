@@ -1,10 +1,8 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
+  "extends": ["stylelint-config-standard"],
   "ignoreFiles": [
     "build/**/*.html",
-    "build/**/*.css",
-    "dist/**/*.html",
-    "dist/**/*.css"
+    "build/**/*.css"
   ],
   "rules": {
     "color-hex-case": "lower",
@@ -130,6 +128,7 @@
     "no-extra-semicolons": true,
     "no-invalid-double-slash-comments": true,
     "no-missing-end-of-source-newline": true,
-    "selector-class-pattern": null
+    "selector-class-pattern": null,
+    "import-notation": null
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "react-starter-kit",
-  "version": "3.1.7",
+  "version": "3.2.0",
   "description": "Initial webpack setup for React projects",
   "author": "Evgeniy Alishevets",
   "repository": "https://github.com/yevgalis/webpack-react-starter",
@@ -10,6 +10,7 @@
     "react",
     "typescript",
     "babel",
+    "postcss",
     "eslint",
     "stylelint"
   ],
@@ -18,8 +19,8 @@
     "build": "cross-env NODE_ENV=production webpack",
     "eslint": "eslint --ext .js,.jsx,.ts,.tsx ./",
     "eslint-fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ./",
-    "stylelint": "stylelint \"src/{**/*,*}.{css,scss}\"",
-    "stylelint-fix": "stylelint \"src/{**/*,*}.{css,scss}\" --fix --formatter=verbose"
+    "stylelint": "stylelint \"src/{**/*,*}.css\"",
+    "stylelint-fix": "stylelint \"src/{**/*,*}.css\" --fix --formatter=verbose"
   },
   "dependencies": {
     "@babel/runtime": "7.20.13",
@@ -61,12 +62,9 @@
     "postcss-preset-env": "7.8.3",
     "postcss-safe-parser": "6.0.0",
     "robotstxt-webpack-plugin": "8.0.0",
-    "sass": "1.58.1",
-    "sass-loader": "13.2.0",
     "style-loader": "3.3.1",
     "stylelint": "14.16.1",
     "stylelint-config-standard": "29.0.0",
-    "stylelint-config-standard-scss": "6.1.0",
     "stylelint-webpack-plugin": "3.3.0",
     "terser-webpack-plugin": "5.3.6",
     "ts-loader": "9.4.2",
@@ -84,7 +82,7 @@
     "*.+(js|jsx|ts|tsx)": [
       "npm run eslint-fix"
     ],
-    "*.+(css|scss)": [
+    "*.+(css)": [
       "npm run stylelint-fix"
     ]
   },
