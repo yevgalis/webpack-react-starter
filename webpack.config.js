@@ -19,19 +19,19 @@ const robotsTxtConfig = {
 module.exports = {
   mode: process.env.NODE_ENV || 'production',
   bail: isProduction,
-  devtool: isProduction ? 'source-map' : 'inline-source-map',
+  devtool: isProduction ? 'source-map' : 'eval-cheap-module-source-map',
   entry: './src/index.tsx',
   output: {
     clean: true,
     path: path.join(__dirname, 'build'),
     filename: 'js/[name].[contenthash].js',
+    // publicPath: '/',
   },
   devServer: {
     'static': {
       directory: path.join(__dirname, 'build'),
     },
-    open: true,
-    hot: true,
+    open: false,
     port: 1337,
     historyApiFallback: true,
   },
@@ -50,7 +50,7 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
     },
-    runtimeChunk: true,
+    runtimeChunk: isProduction ? false : 'single',
   },
   module: {
     rules: [
