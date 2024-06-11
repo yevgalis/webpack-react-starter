@@ -33,7 +33,7 @@ Run [Stylelint](https://stylelint.io/) on your project. If you want stylelint to
 
 ---
 
-# Tools
+## Tools
 
 - Webpack
 - Babel
