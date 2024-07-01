@@ -2,38 +2,40 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
-const robotsTxtConfig = {
-  policy: [
-    {
-      userAgent: '*',
-      disallow: '/',
-    },
-  ],
-};
 
 module.exports = {
   mode: process.env.NODE_ENV || 'production',
   bail: isProduction,
-  devtool: isProduction ? 'source-map' : 'eval-cheap-module-source-map',
+  devtool: isProduction ? false : 'eval-cheap-module-source-map',
   entry: './src/index.tsx',
   output: {
     clean: true,
     path: path.join(__dirname, 'build'),
     filename: 'js/[name].[contenthash].js',
-    // publicPath: '/',
   },
   devServer: {
-    'static': {
+    static: {
       directory: path.join(__dirname, 'build'),
     },
     open: false,
-    port: 1337,
+    hot: true,
+    port: 'auto',
     historyApiFallback: true,
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+    fallback: {
+      buffer: require.resolve('buffer/'),
+    },
   },
   optimization: {
     minimize: isProduction,
@@ -66,9 +68,8 @@ module.exports = {
         exclude: /node_modules/,
         use: 'ts-loader',
       },
-
       {
-        test: /.css$/,
+        test: /\.css$/,
         include: /\.module\.css$/,
         use: [
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
@@ -85,7 +86,7 @@ module.exports = {
         ],
       },
       {
-        test: /.css$/,
+        test: /\.css$/,
         exclude: /\.module\.css$/,
         use: [
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
@@ -112,19 +113,13 @@ module.exports = {
         },
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        test: /\.(woff|woff2|ttf)$/,
         type: 'asset/resource',
         generator: {
           filename: 'fonts/[name][ext]',
         },
       },
     ],
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -144,7 +139,14 @@ module.exports = {
         minifyURLs: true,
       },
     }),
-    new RobotstxtPlugin(robotsTxtConfig),
+    new RobotstxtPlugin({
+      policy: [
+        {
+          userAgent: '*',
+          disallow: '/',
+        },
+      ],
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/style.[contenthash].css',
       chunkFilename: 'css/[id].[contenthash].css',
@@ -157,5 +159,6 @@ module.exports = {
       files: '{**/*,*}.css',
       emitWarning: false,
     }),
+    new CaseSensitivePathsPlugin(),
   ].filter(Boolean),
 };

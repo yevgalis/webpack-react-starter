@@ -50,7 +50,7 @@
   margin: 0;
 }
 
-@media (max-width: 460px) {
+@media (width <= 460px) {
   .logos {
     display: flex;
     flex-wrap: wrap;

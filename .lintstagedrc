@@ -1,0 +1,5 @@
+{
+  "*.{js,ts,jsx,tsx}": ["npm run prettier-fix", "npm run eslint-fix"],
+  "*.css": ["npm run prettier-fix", "npm run stylelint-fix"],
+  "!(*.css|*.js|*.jsx|*.ts|*.tsx)": "npm run prettier-fix"
+}

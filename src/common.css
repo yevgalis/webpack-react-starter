@@ -10,9 +10,8 @@ html {
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
   height: 100%;
+  margin: 0;
   font-family: "Segoe UI", "Open Sans", sans-serif;
   line-height: 1.5;
   word-wrap: break-word;
