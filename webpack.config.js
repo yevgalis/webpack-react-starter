@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,6 +7,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
+/* eslint-enable @typescript-eslint/no-require-imports */
 
 const isProduction = process.env.NODE_ENV === 'production';
 
