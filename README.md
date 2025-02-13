@@ -55,9 +55,9 @@ Run [Prettier](https://prettier.io/) on your project. If you want prettier to au
 
 ### Import aliases
 
-When importing local components / styles / utils you can use alias `@` that builds paths relative to `src` folder.
+When importing local components/styles/utils you can use alias `@` that builds paths relative to `src` folder.
 
-> All new folders and files inside `src` will be automatically available via import `@/Your_folder_name` or `@/Your_filename`
+> All new folders and files inside `src` will be automatically available via import `@/your_folder_name` or `@/your_filename`
 
 ```tsx
 // basic relative path
