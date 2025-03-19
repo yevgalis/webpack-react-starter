@@ -4,6 +4,16 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [4.2.0] - 2025-03-19
+
+### Added
+
+- PostCSS plugin for CSS nesting support
+
+### Changed
+
+- Update NPM packages
+
 ## [4.1.0] - 2025-01-10
 
 ### Changed

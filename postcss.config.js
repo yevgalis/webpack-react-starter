@@ -3,6 +3,7 @@ module.exports = {
   plugins: {
     'postcss-import': {},
     'postcss-flexbugs-fixes': {},
+    'postcss-nesting': {},
     'postcss-preset-env': {
       autoprefixer: {
         flexbox: 'no-2009',
