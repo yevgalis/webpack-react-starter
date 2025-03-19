@@ -40,6 +40,7 @@ Run [Prettier](https://prettier.io/) on your project. If you want prettier to au
 - PostCSS
   - Minification
   - Autoprefixer
+  - [CSS Nesting](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting)
   - Fix known [flexbox bugs](https://github.com/philipwalton/flexbugs)
   - Polyfills for modern CSS features
 - CSS modules support
